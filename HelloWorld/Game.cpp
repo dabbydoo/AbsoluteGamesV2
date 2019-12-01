@@ -1271,8 +1271,8 @@ void Game::UpdateBoss()
 		auto& animController = ECS::GetComponent<AnimationController>(m_Boss_spawn.EnemyID);
 
 		auto hero = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
-
-		if (distance<40) {
+	
+		if (distance>60) {
 			if (!isHitBorder(Boss) || !isHitBorder(Player)) {
 				if (hero.x > m_Boss_spawn.xPos) {
 					frame = 1;
