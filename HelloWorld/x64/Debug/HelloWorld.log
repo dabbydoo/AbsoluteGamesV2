@@ -18,8 +18,13 @@ C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1216,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1219,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1220,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1244,28): warning C4305:  '+=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1248,28): warning C4305:  '-=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1252,28): warning C4305:  '+=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1255,28): warning C4305:  '-=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1242,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1243,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1247,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1248,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1250,17): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1260,31): warning C4305:  '+=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1265,31): warning C4305:  '-=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1270,31): warning C4305:  '+=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1273,31): warning C4305:  '-=': truncation from 'double' to 'float'
   HelloWorld.vcxproj -> C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\HelloWorld.exe

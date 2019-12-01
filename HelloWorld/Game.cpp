@@ -1235,27 +1235,49 @@ void Game::UpdateBoss()
 {
 	static unsigned int frame = 0;
 	
+	Bullet Boss,Player;
+
+	
+
+	 Player.xPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionX();
+	 Player.yPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionY();
+	 Player.bulletID = EntityIdentifier::MainPlayer();
+
+	Boss.bulletID = m_Boss_spawn.EnemyID;
+	Boss.xPos = m_Boss_spawn.xPos;
+	Boss.yPos = m_Boss_spawn.yPos;
+
+	float distance = sqrt(((Boss.xPos- Player.xPos)*(Boss.xPos - Player.xPos))+((Boss.yPos- Player.yPos)*(Boss.yPos - Player.yPos)));
+
 		auto& animController = ECS::GetComponent<AnimationController>(m_Boss_spawn.EnemyID);
 
 		auto hero = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-		if(hero.x>m_Boss_spawn.xPos){
-			frame = 0;
-			m_Boss_spawn.xPos += 0.2;
-		}
-		else if (hero.x < m_Boss_spawn.xPos) {
-			frame = 1;
-			m_Boss_spawn.xPos -= 0.2;
-		}
+		if (distance<40) {
+			if (!isHitBorder(Boss) || !isHitBorder(Player)) {
+				if (hero.x > m_Boss_spawn.xPos) {
+					frame = 1;
+					m_Boss_spawn.xPos += 0.08;
+					animController.SetActiveAnim(frame);
+				}
+				else if (hero.x < m_Boss_spawn.xPos) {
+					frame = 0;
+					m_Boss_spawn.xPos -= 0.08;
+					animController.SetActiveAnim(frame);
+				}
 
-		if (hero.y > m_Boss_spawn.yPos) {
-			m_Boss_spawn.yPos += 0.2;
-		}
-		else if (hero.y < m_Boss_spawn.yPos) {
-			m_Boss_spawn.yPos -= 0.2;
-		}
+				if (hero.y > m_Boss_spawn.yPos) {
+					m_Boss_spawn.yPos += 0.08;
+				}
+				else if (hero.y < m_Boss_spawn.yPos) {
+					m_Boss_spawn.yPos -= 0.08;
+				}
+				if (m_Boss_spawn.xPos == hero.x) {
+					animController.SetActiveAnim(1);
+				}
+			}
 
-		animController.SetActiveAnim(0);
+		}
 
 		ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).SetPositionX(m_Boss_spawn.xPos);
 		ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).SetPositionY(m_Boss_spawn.yPos);
