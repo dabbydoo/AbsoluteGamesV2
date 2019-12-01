@@ -219,7 +219,7 @@ void Game::Update()
 				CreateLizard();
 			}
 
-
+			CheckCollision();
 			CloseLeft();
 			OpenTop();
 			OpenBottom();
@@ -1313,6 +1313,22 @@ void Game::UpdateBoss()
 		
 
 	
+}
+
+void Game::CheckCollision()
+{
+	/*Bullet Boss, Player;
+
+	auto pos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+
+	if (Player.xPos == Boss.xPos && Player.yPos == Boss.yPos)
+	{
+		std::cout << "\n IsHit \n" << std::endl;
+	}
+	else
+	{
+		std::cout << "\n Not Hit \n" << std::endl;
+	}*/
 }
 
 

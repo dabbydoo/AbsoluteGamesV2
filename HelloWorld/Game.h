@@ -97,6 +97,8 @@ public:
 
 	void UpdateBoss();
 
+	void CheckCollision();
+
 	void ShadowEffect();
 
 	bool player_in_room();
