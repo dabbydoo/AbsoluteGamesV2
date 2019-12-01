@@ -126,10 +126,6 @@ void Game::Update()
 			CreateBoss();
 		}
 
-		else
-		{
-
-		}
 
 		int mapArray[5][5];
 		vec3 playerPos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
@@ -153,6 +149,13 @@ void Game::Update()
 		UpdateBeetle();
 
 		UpdateLizard();
+
+		if (BossNum>0) {
+			UpdateBoss();
+		}
+
+		
+		
 
 
 		auto& animControllerr = ECS::GetComponent<AnimationController>(1);
@@ -185,6 +188,7 @@ void Game::Update()
 		if (m_xMap == 1 && m_yMap == 1) {
 			//Load TopLeft
 			animControllerr.SetActiveAnim(0);
+
 			UpdateBeetle();
 			UpdateLizard();
 			if (BeetleNum < 2) {
@@ -325,6 +329,7 @@ void Game::Update()
 			//Load Middle
 		//	std::cout << "I am in the middle room"<<std::endl;
 			animControllerr.SetActiveAnim(4);
+			
 			UpdateBeetle();
 			UpdateLizard();
 			//UpdateBeetle();
@@ -349,8 +354,11 @@ void Game::Update()
 			animControllerr.SetActiveAnim(7);
 			UpdateBeetle();
 			UpdateLizard();
-			if (BeetleNum < 1 && LizardNum < 1) {
+			if (BeetleNum < 1) {
 				CreateBeetle();
+
+			}
+			if (LizardNum < 1) {
 				CreateLizard();
 			}
 
@@ -359,7 +367,7 @@ void Game::Update()
 			OpenLeft();
 			OpenRight();
 		}
-	}
+			}
 
 
 
@@ -943,12 +951,18 @@ void Game::CreateExplosion(int xPos, int yPos)
 	unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
 	ECS::SetUpIdentifier(entity, bitHolder, "Explosion");
 		
+
 }
 
 void Game::UpdateExplosion()
 {
 	for (int i = 0; i < m_fireballList.size(); i++)
 	{
+		if (!player_in_room()) {
+			ECS::DestroyEntity(m_fireballList[i].explosionID);
+			m_fireballList.erase(m_fireballList.begin() + i);
+		}
+
 		if ((float(clock() - m_fireballList[i].beginTime)/CLOCKS_PER_SEC > .3))
 		{
 			ECS::DestroyEntity(m_fireballList[i].explosionID);
@@ -1161,16 +1175,8 @@ void Game::UpdateLizard()
 void Game::CreateBoss()
 
 {
-	float RoomY;
-	srand(time(NULL));
-	RoomY = rand() % 5 + (1);
-	float RoomX;
-	srand(time(NULL));
-	RoomX = rand() % 5 + (1);
 
 	enemy = true;
-	Enemy Boss;
-
 
 
 	//Boss animation file
@@ -1194,30 +1200,26 @@ void Game::CreateBoss()
 	animController.AddAnimation(Moving["bossRight"]);
 
 
-	Boss.EnemyID = entityB;
+	m_Boss_spawn.EnemyID = entityB;
 
 	//Set first anitmation
 	animController.SetActiveAnim(0);
 
 	//gets first animation
-	auto& anim = animController.GetAnimation(0);
+	
 
 	ECS::GetComponent<Sprite>(entityB).LoadSprite(image, 100 / 2, 151 / 2, true, &animController);
 	
 
 	float randomY;
 	srand(time(NULL));
-	randomY = rand() % 120 + (-80);
+	randomY = rand() % 55 + (-31);
 
 	float randomX;
 	srand(time(NULL));
 	randomX = rand() % 80 + (-30);
 
 	ECS::GetComponent<Transform>(entityB).SetPosition(vec3(randomX, randomY, 41.f));
-
-	Boss.xPos = ECS::GetComponent<Transform>(entityB).GetPositionX();
-
-	Boss.yPos = ECS::GetComponent<Transform>(entityB).GetPositionY();
 
 	
 
@@ -1227,6 +1229,49 @@ void Game::CreateBoss()
 
 	BossNum = 1;
 
+}
+
+void Game::UpdateBoss()
+{
+	static unsigned int frame = 0;
+	
+		auto& animController = ECS::GetComponent<AnimationController>(m_Boss_spawn.EnemyID);
+
+		auto hero = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+
+		if(hero.x>m_Boss_spawn.xPos){
+			frame = 0;
+			m_Boss_spawn.xPos += 0.2;
+		}
+		else if (hero.x < m_Boss_spawn.xPos) {
+			frame = 1;
+			m_Boss_spawn.xPos -= 0.2;
+		}
+
+		if (hero.y > m_Boss_spawn.yPos) {
+			m_Boss_spawn.yPos += 0.2;
+		}
+		else if (hero.y < m_Boss_spawn.yPos) {
+			m_Boss_spawn.yPos -= 0.2;
+		}
+
+		animController.SetActiveAnim(0);
+
+		ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).SetPositionX(m_Boss_spawn.xPos);
+		ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).SetPositionY(m_Boss_spawn.yPos);
+
+		//m_Boss_spawn[i].xPos += (m_Boss_spawn[i].xDir * 0.25);
+
+		//ECS::GetComponent<Transform>(m_Boss_spawn[i].EnemyID).SetPositionX(m_Boss_spawn[i].xPos);
+		//ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
+
+		if (!player_in_room()) {
+			ECS::DestroyEntity(m_Boss_spawn.EnemyID);
+			BossNum = 0;
+		}
+		
+
+	
 }
 
 
