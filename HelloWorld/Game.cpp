@@ -6,9 +6,9 @@
 #include <random>
 #include "EffectManager.h"
 
-int BossNum = 0;
-int BeetleNum = 0;
-int LizardNum = 0;
+static unsigned int BossNum = 0;
+static unsigned int BeetleNum = 0;
+static unsigned int LizardNum = 0;
 
 
 
@@ -153,9 +153,6 @@ void Game::Update()
 		if (BossNum>0) {
 			UpdateBoss();
 		}
-
-		
-		
 
 
 		auto& animControllerr = ECS::GetComponent<AnimationController>(1);
@@ -333,7 +330,7 @@ void Game::Update()
 			UpdateBeetle();
 			UpdateLizard();
 			//UpdateBeetle();
-			if (BeetleNum < 1) {
+			if (BeetleNum < 6) {
 				CreateBeetle();
 
 			}
@@ -826,7 +823,7 @@ void Game::OpenBottom()
 
 void Game::CreateBullet(int xDir, int yDir)
 {
-	Bullet bullet;
+	Enemy bullet;
 	//Power up animataion file
 	auto bulletSprite = File::LoadJSON("Bullet.json");
 	 
@@ -857,7 +854,7 @@ void Game::CreateBullet(int xDir, int yDir)
 	ECS::GetComponent<Transform>(entity).SetPositionZ(ECS::GetComponent<Transform>(2).GetPosition().z);
 
 	//Record bullet ID
-	bullet.bulletID = entity;
+	bullet.EnemyID = entity;
 
 	//Record bullet position in vector
 	bullet.xPos = ECS::GetComponent<Transform>(entity).GetPositionX();
@@ -875,7 +872,7 @@ void Game::CreateBullet(int xDir, int yDir)
 
 void Game::UpdateBullet()
 {
-	for (int i = 0; i < m_bulletList.size(); i++)
+	/*for (int i = 0; i < m_bulletList.size(); i++)
 	{
 		//Update Vector
 		m_bulletList[i].xPos = m_bulletList[i].xPos + m_bulletList[i].xDir;
@@ -899,7 +896,38 @@ void Game::UpdateBullet()
 			
 		}
 		
+	} */
+
+
+
+	for (int i = 0; i < m_bulletList.size(); i++)
+	{
+		m_bulletList[i].xPos += m_bulletList[i].xDir * 0.3;
+		m_bulletList[i].yPos += m_bulletList[i].yDir * 0.3;
+
+		ECS::GetComponent<Transform>(m_bulletList[i].EnemyID).SetPositionX(m_bulletList[i].xPos);
+		ECS::GetComponent<Transform>(m_bulletList[i].EnemyID).SetPositionY(m_bulletList[i].yPos);
+		//ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
+
+
+		
+		if (!player_in_room()) {
+
+			ECS::DestroyEntity(m_bulletList[i].EnemyID);
+			m_bulletList.erase(m_bulletList.begin() + i);
+		}
+		else if (isHitBorder(m_bulletList[i]))
+		{
+			ECS::DestroyEntity(m_bulletList[i].EnemyID);
+			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
+			m_bulletList.erase(m_bulletList.begin() + i);
+
+		}
+
 	}
+
+
+
 }
 
 void Game::CreateExplosion(int xPos, int yPos)
@@ -971,7 +999,7 @@ void Game::UpdateExplosion()
 	}
 }
 
-bool Game::isHitBorder(Bullet bullet)
+bool Game::isHitBorder(Enemy bullet)
 {
 	if (bullet.xPos > 145 || bullet.xPos < -148 || bullet.yPos > 70 || bullet.yPos < -71)
 	{
@@ -1064,8 +1092,6 @@ void Game::CreateBeetle()
 void Game::UpdateBeetle()
 {
 	
-	
-	
 	for (int i = 0; i < m_Bettle_spawn.size(); i++)
 	{
 		m_Bettle_spawn[i].xPos += m_Bettle_spawn[i].xDir*0.3;
@@ -1083,11 +1109,11 @@ void Game::UpdateBeetle()
 			m_Bettle_spawn[i].yDir *= -1.f;
 		
 
-		if (!player_in_room()) {
+	if (!player_in_room()) {
 
 			ECS::DestroyEntity(m_Bettle_spawn[i].EnemyID);
 			m_Bettle_spawn.erase(m_Bettle_spawn.begin() + i);
-			BeetleNum = 0;
+			BeetleNum -=1;
 		}
 		
 		}
@@ -1098,8 +1124,6 @@ void Game::CreateLizard()
 {
 	//enemy = true;
 	Enemy Lizard;
-
-
 
 	//Beetle animation file
 	auto Moving = File::LoadJSON("Lizard.json");
@@ -1144,6 +1168,7 @@ void Game::CreateLizard()
 	Lizard.xPos = ECS::GetComponent<Transform>(entityL).GetPositionX();
 
 	Lizard.yPos = ECS::GetComponent<Transform>(entityL).GetPositionY();
+
 	Lizard.change = Lizard.xDir;
 
 	m_Lizard_spawn.push_back(Lizard);
@@ -1177,13 +1202,13 @@ void Game::UpdateLizard()
 
 		}
 
-
+		
 		if (!player_in_room()) {
 
 			ECS::DestroyEntity(m_Lizard_spawn[i].EnemyID);
 			m_Lizard_spawn.erase(m_Lizard_spawn.begin() + i);
 
-			LizardNum = 0;
+			LizardNum -= 1;
 		}
 
 	}
@@ -1254,15 +1279,15 @@ void Game::UpdateBoss()
 {
 	static unsigned int frame = 0;
 	
-	Bullet Boss,Player;
+	Enemy Boss,Player;
 
 	
 
 	 Player.xPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionX();
 	 Player.yPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionY();
-	 Player.bulletID = EntityIdentifier::MainPlayer();
+	 Player.EnemyID = EntityIdentifier::MainPlayer();
 
-	Boss.bulletID = m_Boss_spawn.EnemyID;
+	Boss.EnemyID = m_Boss_spawn.EnemyID;
 	Boss.xPos = m_Boss_spawn.xPos;
 	Boss.yPos = m_Boss_spawn.yPos;
 
@@ -1358,7 +1383,7 @@ void Game::DestroyEntities()
 {
 	for (int i = 0; i < m_bulletList.size(); i++)
 	{
-			ECS::DestroyEntity(m_bulletList[i].bulletID);
+			ECS::DestroyEntity(m_bulletList[i].EnemyID);
 			m_bulletList.erase(m_bulletList.begin() + i);
 	}
 
@@ -1368,11 +1393,11 @@ void Game::DestroyEntities()
 		m_Bettle_spawn.erase(m_Bettle_spawn.begin() + i);
 	}
 
-	for (int i = 0; i < m_fireballList.size(); i++)
+	/*for (int i = 0; i < m_fireballList.size(); i++)
 	{
 		ECS::DestroyEntity(m_fireballList[i].explosionID);
 		m_fireballList.erase(m_fireballList.begin() + i);
-	}
+	}*/
 
 	for (int i = 0; i < m_Lizard_spawn.size(); i++)
 	{

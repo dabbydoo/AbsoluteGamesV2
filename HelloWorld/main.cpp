@@ -1,3 +1,4 @@
+
 #include "Game.h"
 #include <Windows.h>
 #include <mmsystem.h>
@@ -12,6 +13,7 @@ int main()
 	//Create the Game
 	Game game;
 
+
 	//Initialize the game
 	game.InitGame();
 
@@ -23,4 +25,5 @@ int main()
 	
 
 	
+
 }

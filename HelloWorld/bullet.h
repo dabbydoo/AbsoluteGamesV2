@@ -10,13 +10,6 @@ struct Bullet
 	int xDir, yDir;
 };
 
-struct Beetle
-{
-	int BeetleID;
-	int xPos, yPos, zPos;
-	int xDir, yDir;
-};
-
 struct Explosion
 {
 	int explosionID;
