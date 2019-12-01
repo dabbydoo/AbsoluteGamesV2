@@ -1,4 +1,19 @@
-﻿  Game.cpp
+﻿  AnimationController.cpp
+  AnimationSystem.cpp
+  BackEnd.cpp
+  BloomEffect.cpp
+  Camera.cpp
+  CameraSystem.cpp
+  ECS.cpp
+  EffectManager.cpp
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(114,32): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(154,30): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+  EntityIdentifier.cpp
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(160,24): warning C4305:  '=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\EntityIdentifier.cpp(14,60): warning C4305:  'initializing': truncation from '__int64' to 'unsigned int'
+  Framebuffer.cpp
+  Game.cpp
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\EntityIdentifier.cpp(14,49): warning C4309:  'initializing': truncation of constant value
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(130,7): warning C4101:  'mapArray': unreferenced local variable
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(863,65): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(864,65): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
@@ -29,5 +44,47 @@ C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1279,31): warning C4305:  '+=': truncation from 'double' to 'float'
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1284,31): warning C4305:  '-=': truncation from 'double' to 'float'
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1289,31): warning C4305:  '+=': truncation from 'double' to 'float'
+  GrainEffect.cpp
+  GreyscaleEffect.cpp
+  HealthBar.cpp
+  HelloWorld.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_impl.cpp
+  imgui_widgets.cpp
+  Generating Code...
+  Compiling...
+  Input.cpp
+  JSON.cpp
+  main.cpp
+  Menu.cpp
+  PhysicsBody.cpp
+  PixelateEffect.cpp
+  PostEffect.cpp
+  RenderingSystem.cpp
+  Scene.cpp
+  SceneEditor.cpp
+  Selectable.cpp
+  SelectiveColorEffect.cpp
+  SepiaEffect.cpp
+  Shader.cpp
+  Sprite.cpp
+  Texture.cpp
+  TextureManager.cpp
+  Timer.cpp
+  Transform.cpp
+  UI.cpp
+  Generating Code...
+  Compiling...
+  VertexManager.cpp
+  VignetteEffect.cpp
+  Window.cpp
+  XInput.cpp
+  Generating Code...
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1292,31): warning C4305:  '-=': truncation from 'double' to 'float'
+SOIL_ext.lib(etc1_utils.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'SOIL_ext.lib(etc1_utils.obj)' or at 'C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\soil2-debug.pdb'; linking object as if no debug info
+SOIL_ext.lib(image_DXT.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'SOIL_ext.lib(image_DXT.obj)' or at 'C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\soil2-debug.pdb'; linking object as if no debug info
+SOIL_ext.lib(image_helper.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'SOIL_ext.lib(image_helper.obj)' or at 'C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\soil2-debug.pdb'; linking object as if no debug info
+SOIL_ext.lib(SOIL2.obj) : warning LNK4099: PDB 'soil2-debug.pdb' was not found with 'SOIL_ext.lib(SOIL2.obj)' or at 'C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\soil2-debug.pdb'; linking object as if no debug info
   HelloWorld.vcxproj -> C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\HelloWorld.exe
