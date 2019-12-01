@@ -1032,6 +1032,21 @@ void Game::CreateBeetle()
 
 		Beetle.yPos = ECS::GetComponent<Transform>(entityB).GetPositionY();
 
+		Beetle.xDir = rand() % 3;
+
+		Beetle.yDir = rand() % 3;
+
+		if (Beetle.xDir==2) {
+			Beetle.xDir = -1;
+		}
+
+		if (Beetle.yDir==2) {
+			Beetle.yDir = -1;
+		}
+
+		else if (Beetle.xDir==0&&Beetle.yDir==0) {
+			Beetle.xDir = 1;
+		}
 		m_Bettle_spawn.push_back(Beetle);
 
 		
@@ -1053,15 +1068,19 @@ void Game::UpdateBeetle()
 	
 	for (int i = 0; i < m_Bettle_spawn.size(); i++)
 	{
-		m_Bettle_spawn[i].xPos += m_Bettle_spawn[i].xDir*0.4;
-	
+		m_Bettle_spawn[i].xPos += m_Bettle_spawn[i].xDir*0.3;
+		m_Bettle_spawn[i].yPos += m_Bettle_spawn[i].yDir * 0.3;
+
 		ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionX(m_Bettle_spawn[i].xPos);
-		auto player = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+		ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
 		//ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
 
 
 		if (m_Bettle_spawn[i].xPos >= 135|| m_Bettle_spawn[i].xPos <= -135)
 			m_Bettle_spawn[i].xDir *= -1.f;
+
+		if (m_Bettle_spawn[i].yPos >= 70 || m_Bettle_spawn[i].yPos <= -70)
+			m_Bettle_spawn[i].yDir *= -1.f;
 		
 
 		if (!player_in_room()) {

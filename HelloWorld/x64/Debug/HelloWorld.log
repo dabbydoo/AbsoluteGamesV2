@@ -8,23 +8,26 @@ C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(8
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(933,62): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(933,56): warning C4244:  'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1026,25): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1056,55): warning C4244:  '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1115,66): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1115,57): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1120,19): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1128,24): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1147,58): warning C4244:  '+=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1215,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1216,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1219,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1220,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1242,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1243,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1247,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1248,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1250,17): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1260,31): warning C4305:  '+=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1265,31): warning C4305:  '-=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1270,31): warning C4305:  '+=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1273,31): warning C4305:  '-=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1035,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1037,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1071,55): warning C4244:  '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1072,57): warning C4244:  '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1134,66): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1134,57): warning C4244:  'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1139,19): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1147,24): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1166,58): warning C4244:  '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1234,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1235,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1238,12): warning C4244:  'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1239,24): warning C4244:  '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1261,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1262,90): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1266,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1267,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1269,17): warning C4244:  'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1279,31): warning C4305:  '+=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1284,31): warning C4305:  '-=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1289,31): warning C4305:  '+=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1292,31): warning C4305:  '-=': truncation from 'double' to 'float'
   HelloWorld.vcxproj -> C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\HelloWorld.exe
