@@ -1,0 +1,27 @@
+#pragma once
+
+#include "time.h"
+
+
+struct Bullet
+{
+	int bulletID;
+	int xPos, yPos, zPos;
+	int xDir, yDir;
+};
+
+struct Beetle
+{
+	int BeetleID;
+	int xPos, yPos, zPos;
+	int xDir, yDir;
+};
+
+struct Explosion
+{
+	int explosionID;
+	int xPos, yPos, zPos;
+	clock_t beginTime;
+};
+
+
