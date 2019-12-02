@@ -7,12 +7,15 @@
 #include "bullet.h"
 #include"Enemy_Class.h"
 
+bool BossHits = false;
 //Our main class for running our game
 class Game
 {
 public:
+
+
 	//Empty constructor
-	Game() { };
+	Game() { }
 	//Deconstructor for game
 	//*Unloads window
 	~Game();

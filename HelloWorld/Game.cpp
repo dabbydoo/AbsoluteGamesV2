@@ -1325,18 +1325,26 @@ void Game::UpdateBoss()
 
 void Game::CheckCollision()
 {
-	/*Bullet Boss, Player;
+	Bullet Boss, Player;
 
 	auto pos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-	if (Player.xPos == Boss.xPos && Player.yPos == Boss.yPos)
+	Player.xPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionX();
+	Player.yPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionY();
+
+	Boss.xPos = m_Boss_spawn.xPos;
+	Boss.yPos = m_Boss_spawn.yPos;
+
+	if ((Player.xPos >= Boss.xPos - 60 && Player.xPos <= Boss.xPos + 60) && (Player.yPos <= Boss.yPos + 60 && Player.yPos >= Boss.yPos - 60))
 	{
 		std::cout << "\n IsHit \n" << std::endl;
+		BossHits = true;
 	}
 	else
 	{
 		std::cout << "\n Not Hit \n" << std::endl;
-	}*/
+		BossHits = false;
+	}
 }
 
 

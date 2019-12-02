@@ -1,6 +1,6 @@
 #include "EffectManager.h"
-#include "Game.h"
 
+#include "Game.h"
 Selectable EffectManager::m_selectable = Selectable("Effect Editor");
 
 int EffectManager::m_numEffects = 0;
@@ -150,7 +150,7 @@ void EffectManager::CreateLighting()
 
 		auto position = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-		if (Input::GetKeyDown(Key::L)) {
+		if (BossHits == true) {
 			innerradius = innerradius - 0.5;
 			temp->SetInnerRadius(innerradius);
 			if (innerradius <= -2.3) {
