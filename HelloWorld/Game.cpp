@@ -130,6 +130,7 @@ void Game::Update()
 {
 	if (m_sceneID == 1)
 	{
+		
 		if (!win) {
 			if (BossNum < 1 && m_xMap == 1 && m_yMap == 2)
 			{
@@ -922,7 +923,7 @@ void Game::UpdateBullet()
 			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
 			m_bulletList.erase(m_bulletList.begin() + i);
 			
-			for (int k = 0; k < m_Bettle_spawn.size();k++) {
+			/*for (int k = 0; k < m_Bettle_spawn.size();k++) {
 				if (m_Bettle_spawn[k].EnemyID==m_all_enemies_in_the_room[j].EnemyID) {
 					ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
 					m_all_enemies_in_the_room.erase(m_all_enemies_in_the_room.begin() + j);
@@ -938,7 +939,7 @@ void Game::UpdateBullet()
 					m_Lizard_spawn.erase(m_Lizard_spawn.begin() + k);
 					LizardNum -= 1;
 				}
-			}
+			}*/
 			if (m_all_enemies_in_the_room[j].EnemyID==m_Boss_spawn.EnemyID) {
 				ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
 				m_all_enemies_in_the_room.clear();
@@ -1132,12 +1133,12 @@ void Game::CreateBeetle()
 
 void Game::UpdateBeetle()
 {
-	if (m_all_enemies_in_the_room.size() < m_Bettle_spawn.size()) {
+	/*if (m_all_enemies_in_the_room.size() < m_Bettle_spawn.size()) {
 		for (int i = 0; i < m_Bettle_spawn.size(); i++) {
 			ECS::DestroyEntity(m_Bettle_spawn[i].EnemyID);
 		}
 		m_Bettle_spawn.clear();
-	}
+	}*/
 	for (int i = 0; i < m_Bettle_spawn.size(); i++)
 	{
 		m_Bettle_spawn[i].xPos += m_Bettle_spawn[i].xDir*0.3;
@@ -1234,12 +1235,12 @@ void Game::CreateLizard()
 
 void Game::UpdateLizard()
 {
-	if (m_all_enemies_in_the_room.size()<m_Lizard_spawn.size()) {
+	/*if (m_all_enemies_in_the_room.size()<m_Lizard_spawn.size()) {
 		for (int i = 0; i < m_Lizard_spawn.size();i++) {
 			ECS::DestroyEntity(m_Lizard_spawn[i].EnemyID);
 		}
 		m_Lizard_spawn.clear();
-	}
+	}*/
 
 	for (int i = 0; i < m_Lizard_spawn.size(); i++)
 	{

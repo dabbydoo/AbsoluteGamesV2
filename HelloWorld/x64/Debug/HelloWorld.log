@@ -1,6 +1,31 @@
-﻿  EffectManager.cpp
-C:\Users\farha\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(113,32): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\farha\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(149,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\farha\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(152,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\farha\AbsoluteGamesV2\HelloWorld\EffectManager.cpp(155,22): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Game.cpp
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(141,8): warning C4101: 'mapArray': unreferenced local variable
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(885,65): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(886,65): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(887,65): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(917,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(918,86): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(991,62): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(991,56): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1096,25): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1105,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1107,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1144,55): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1145,57): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1209,66): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1209,57): warning C4244: 'argument': conversion from 'double' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1214,19): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1223,24): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1249,58): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1318,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1319,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1322,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1323,24): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1370,31): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1375,31): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1380,31): warning C4305: '+=': truncation from 'double' to 'float'
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1383,31): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1545,77): warning C4312: 'type cast': conversion from 'int' to 'VignetteEffect *' of greater size
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1554,30): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\farha\AbsoluteGamesV2\HelloWorld\Game.cpp(1560,24): warning C4305: '=': truncation from 'double' to 'float'
   HelloWorld.vcxproj -> C:\Users\farha\AbsoluteGamesV2\x64\Debug\HelloWorld.exe
