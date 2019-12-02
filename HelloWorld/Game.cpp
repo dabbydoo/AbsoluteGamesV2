@@ -255,7 +255,7 @@ void Game::Update()
 				CreateBeetle();
 
 			}
-			if (LizardNum < 1) {
+			if (LizardNum < 2) {
 				CreateLizard();
 			}
 
@@ -270,7 +270,7 @@ void Game::Update()
 			animControllerr.SetActiveAnim(5);
 			UpdateBeetle();
 			UpdateLizard();
-			if (BeetleNum < 2) {
+			if (BeetleNum < 3) {
 				CreateBeetle();
 
 			}
@@ -293,7 +293,7 @@ void Game::Update()
 				CreateBeetle();
 
 			}
-			if (LizardNum < 1) {
+			if (LizardNum < 2) {
 				CreateLizard();
 			}
 
@@ -354,11 +354,11 @@ void Game::Update()
 			animControllerr.SetActiveAnim(7);
 			UpdateBeetle();
 			UpdateLizard();
-			if (BeetleNum < 1) {
+			if (BeetleNum < 3) {
 				CreateBeetle();
 
 			}
-			if (LizardNum < 1) {
+			if (LizardNum < 2) {
 				CreateLizard();
 			}
 
@@ -1334,7 +1334,13 @@ void Game::UpdateBoss()
 
 void Game::CheckCollision()
 {
-	Bullet Boss, Player;
+	Bullet Boss, Player, bullet;
+	
+
+	/*auto entity = ECS::CreateEntity();
+
+	bullet.xPos = ECS::GetComponent<Transform>(entity).GetPositionX();
+	bullet.yPos = ECS::GetComponent<Transform>(entity).GetPositionY();*/
 
 	auto pos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
@@ -1355,6 +1361,16 @@ void Game::CheckCollision()
 		std::cout << "\n Not Hit \n" << std::endl;
 		BossHits = false;
 	}
+
+	/*if ((bullet.xPos >= Boss.xPos - 10 && bullet.xPos <= Boss.xPos + 10) && (bullet.yPos <= Boss.yPos + 30 && bullet.yPos >= Boss.yPos - 30) && (m_xMap == 1 && m_yMap == 2))
+	{
+		std::cout << "\n The Boss Was Shot \n" << std::endl;
+	}
+	else
+	{
+		std::cout << "\n Not Shot \n" << std::endl;
+		
+	}*/
 }
 
 void Game::BossHealth()
@@ -1430,10 +1446,11 @@ void Game::UpdateHealthbar()
 
 	auto hero = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-	
+	float x = Boss.xPos;
+	float y = Boss.yPos;
 
-	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionX(m_Health_Bar.xPos);
-	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionY(m_Health_Bar.yPos);
+	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionX(x);
+	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionY(y+40);
 
 	//m_Boss_spawn[i].xPos += (m_Boss_spawn[i].xDir * 0.25);
 

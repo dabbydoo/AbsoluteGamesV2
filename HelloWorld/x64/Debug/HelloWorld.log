@@ -25,11 +25,12 @@ C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1301,31): warning C4305:  '-=': truncation from 'double' to 'float'
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1306,31): warning C4305:  '+=': truncation from 'double' to 'float'
 C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1309,31): warning C4305:  '-=': truncation from 'double' to 'float'
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1341,89): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1342,89): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1344,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1345,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1469,77): warning C4312:  'type cast': conversion from 'int' to 'VignetteEffect *' of greater size
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1478,30): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1484,24): warning C4305:  '=': truncation from 'double' to 'float'
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1347,89): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1348,89): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1350,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1351,26): warning C4244:  '=': conversion from 'float' to 'int', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1337,23): warning C4101:  'bullet': unreferenced local variable
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1486,77): warning C4312:  'type cast': conversion from 'int' to 'VignetteEffect *' of greater size
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1495,30): warning C4244:  '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\HelloWorld\Game.cpp(1501,24): warning C4305:  '=': truncation from 'double' to 'float'
   HelloWorld.vcxproj -> C:\Users\Andy\Documents\GDW\AbsoluteZeroV2\AbsoluteGamesV2\x64\Debug\HelloWorld.exe
