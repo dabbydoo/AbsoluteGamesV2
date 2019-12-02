@@ -949,8 +949,6 @@ void Game::CreateExplosion(int xPos, int yPos)
 	//Setup up the Identifier
 	unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
 	ECS::SetUpIdentifier(entity, bitHolder, "Explosion");
-		
-
 }
 
 void Game::UpdateExplosion()
