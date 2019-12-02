@@ -1442,12 +1442,14 @@ void Game::UpdateBoss()
 void Game::CheckCollision()
 {
 	Bullet Boss, Player, bullet;
-	
 
-	/*auto entity = ECS::CreateEntity();
+	auto entityHealth = ECS::CreateEntity();
+	auto& animController = ECS::GetComponent<AnimationController>(entityHealth);
+
+	auto entity = ECS::CreateEntity();
 
 	bullet.xPos = ECS::GetComponent<Transform>(entity).GetPositionX();
-	bullet.yPos = ECS::GetComponent<Transform>(entity).GetPositionY();*/
+	bullet.yPos = ECS::GetComponent<Transform>(entity).GetPositionY();
 
 	auto pos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
@@ -1460,6 +1462,7 @@ void Game::CheckCollision()
 	if ((Player.xPos >= Boss.xPos - 60 && Player.xPos <= Boss.xPos + 60) && (Player.yPos <= Boss.yPos + 60 && Player.yPos >= Boss.yPos - 60) && (m_xMap == 1 && m_yMap == 2))
 	{
 		std::cout << "\n IsHit \n" << std::endl;
+		
 		BossHits = true;
 
 	}
@@ -1469,15 +1472,22 @@ void Game::CheckCollision()
 		BossHits = false;
 	}
 
-	/*if ((bullet.xPos >= Boss.xPos - 10 && bullet.xPos <= Boss.xPos + 10) && (bullet.yPos <= Boss.yPos + 30 && bullet.yPos >= Boss.yPos - 30) && (m_xMap == 1 && m_yMap == 2))
+	if ((bullet.xPos >= Boss.xPos - 10 && bullet.xPos <= Boss.xPos + 10) && (bullet.yPos <= Boss.yPos + 30 && bullet.yPos >= Boss.yPos - 30) && (m_xMap == 1 && m_yMap == 2))
 	{
-		std::cout << "\n The Boss Was Shot \n" << std::endl;
+		if (animController.GetActiveAnim() > 0) {
+			std::cout << "\n The Boss Was Shot \n" << std::endl;
+			animController.SetActiveAnim(animController.GetActiveAnim() - 1);
+		}
+		else {
+			animController.SetActiveAnim(0);
+		}
+		
 	}
 	else
 	{
 		std::cout << "\n Not Shot \n" << std::endl;
 		
-	}*/
+	}
 }
 
 void Game::BossHealth()
@@ -1598,7 +1608,7 @@ void Game::collisionEffect()
 
 		auto position = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-		if (BossHits == true) {
+		if (BossHit == true) {
 			innerradius = innerradius - 0.5;
 			temp->SetInnerRadius(innerradius);
 			if (innerradius <= -2.3) {

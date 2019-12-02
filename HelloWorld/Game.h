@@ -7,7 +7,7 @@
 #include "bullet.h"
 #include"Enemy_Class.h"
 
-
+bool BossHit = false;
 //Our main class for running our game
 class Game
 {

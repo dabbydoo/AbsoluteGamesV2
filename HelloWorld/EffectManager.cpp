@@ -141,17 +141,31 @@ void EffectManager::CreateEditor()
 
 void EffectManager::CreateLighting()
 {
-	
-		/*if (Input::GetKeyDown(Key::P)) {
+	VignetteEffect* temp = (VignetteEffect*)EffectManager::GetEffect(m_vignette);
+	float innerradius = temp->GetInnerRadius();
+	float outerradius = temp->GetOuterRadius();
+	float opacity = temp->GetOpacity();
+
+		if (Input::GetKeyDown(Key::P) /*|| BossHit = true*/) {
+			innerradius = innerradius - 0.05;
+			temp->SetInnerRadius(innerradius);
+
 			outerradius = outerradius - 0.1;
 			temp->SetOuterRadius(outerradius);
-		}
-		if (Input::GetKeyDown(Key::M)) {
-			opacity = opacity + 0.1;
+
+			opacity = opacity + 0.05;
 			temp->SetOpacity(opacity);
+			if (innerradius >= -2.5) {
+				std::cout << "\n Gameover \n" << std::endl;
+			}
 		}
-		if (Input::GetKeyDown(Key::K)) {
+		
+		/*if (Input::GetKeyDown(Key::K)) {
 			EffectManager::RemoveEffect(m_vignette);
+			if (!m_vignette)
+			{
+
+			}
 		}*/
 	
 }
