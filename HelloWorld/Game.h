@@ -7,7 +7,7 @@
 #include "bullet.h"
 #include"Enemy_Class.h"
 
-bool BossHit = false;
+
 //Our main class for running our game
 class Game
 {
@@ -101,7 +101,7 @@ public:
 
 	void UpdateBoss();
 
-	void CheckCollision();
+bool CheckCollision(int ID_1, int ID_2, float distance);
 
 	void BossHealth();
 
@@ -117,10 +117,11 @@ public:
 
 	void CreateMenuButton();
 
-
+	bool BossHit = false; 
 //	void Create_close_room();
 
 private:
+
 	//The window
 	Window *m_window = nullptr;
 
@@ -157,6 +158,7 @@ private:
 	//Enemy
 	std::vector<Enemy>m_Bettle_spawn;
 	std::vector<Enemy>m_Lizard_spawn;
+	std::vector<Enemy>m_all_enemies_in_the_room;
 	Enemy m_Boss_spawn;
 	Enemy m_Boss_Health;
 	Enemy m_Health_Bar;

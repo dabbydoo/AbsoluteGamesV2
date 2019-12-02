@@ -38,7 +38,7 @@ public:
 
 	static void CreateTab();
 	static void CreateEditor();
-	static void CreateLighting();
+	static void CreateLighting(bool bossHit);
 
 	//Initialize effect manager
 	static void InitEffectManager(unsigned width, unsigned height);

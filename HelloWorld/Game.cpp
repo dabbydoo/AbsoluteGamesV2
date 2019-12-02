@@ -52,7 +52,7 @@ void Game::InitGame()
 	//Initializes the backend
 	BackEnd::InitBackEnd(m_name);
 
-	BackEnd::GetWindow()->SetFullscreen(true);
+	 // BackEnd::GetWindow()->SetFullscreen(true);
 
 	//Grabs the initialized window
 	m_window = BackEnd::GetWindow();
@@ -182,7 +182,7 @@ void Game::Update()
 			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionX((playerPos.x = 190));
 			m_xMap -= 1;
 		}
-		if (playerPos.y < -100) {
+		if (playerPos.y < -100) { 
 
 			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionY((playerPos.y = 100));
 			m_yMap += 1;
@@ -226,7 +226,7 @@ void Game::Update()
 			}
 
 			
-			CheckCollision();
+			//CheckCollision();
 			CloseLeft();
 			OpenTop();
 			OpenBottom();
@@ -403,20 +403,6 @@ void Game::GUI()
 
 void Game::CheckEvents()
 {
-	
-	
-	//CreateBeetle();
-	//ShadowEffect();
-	
-	if (m_sceneID == 1)
-	{
-		EffectManager::CreateLighting();
-	}
-
-	
-	
-
-
 
 
 	if (m_close)
@@ -649,17 +635,8 @@ void Game::KeyboardDown()
 
 		if (Input::GetKeyDown(Key::Escape))
 		{
-			//DOESNT WORK
-			/*//DestroyEntities();
-
-			m_sceneID = 0;
-
-			m_activeScene = m_scenes[m_sceneID];
-
-			m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
-
-			m_register = m_activeScene->GetScene();
-			*/
+		
+			
 		}
 
 		if (Input::GetKeyDown(Key::F4))
@@ -669,31 +646,6 @@ void Game::KeyboardDown()
 
 
 		auto& animControllerr = ECS::GetComponent<AnimationController>(2);
-
-		if (Input::GetKeyDown(Key::A))
-		{
-
-			printf("A Key Down\n");
-			//animControllerr.SetActiveAnim(2);
-
-		}
-
-		if (Input::GetKeyDown(Key::W))
-		{
-			printf("W Key Down\n");
-			//animControllerr.SetActiveAnim(1);
-
-		}if (Input::GetKeyDown(Key::S))
-		{
-			printf("S Key Down\n");
-			//animControllerr.SetActiveAnim(0);
-		}
-		if (Input::GetKeyDown(Key::D))
-		{
-			printf("D Key Down\n");
-			printf("o");
-			//animControllerr.SetActiveAnim(3);
-		}
 
 		//Bullet
 		if (Input::GetKeyDown(Key::UpArrow))
@@ -732,32 +684,11 @@ void Game::KeyboardUp()
 		m_guiActive = !m_guiActive;
 	}
 
-	
-	if (Input::GetKeyUp(Key::UpArrow))
-	{
-		
-	}
-
-	if (Input::GetKeyUp(Key::RightArrow))
-	{
-		
-	}
-
-	if (Input::GetKeyUp(Key::DownArrow))
-	{
-		
-	}
-
-	if (Input::GetKeyUp(Key::LeftArrow))
-	{
-		
-	}
-
 }
 
 void Game::MouseMotion(SDL_MouseMotionEvent evnt)
 {
-	printf("Mouse Moved (%f, %f)\n", float(evnt.x), float(evnt.y));
+	
 
 	if (m_guiActive)
 	{
@@ -781,26 +712,7 @@ void Game::MouseClick(SDL_MouseButtonEvent evnt)
 		float yPos = float(evnt.y) / float(BackEnd::GetWindowHeight());
 
 		printf("Left Mouse Button Clicked at (% f, % f)\n", float(evnt.x) / float(BackEnd::GetWindowWidth()), float(evnt.y) / float(BackEnd::GetWindowHeight()));
-		/*if (xPos >= 0.18 && xPos <= 0.84 && yPos >= 0.56 && yPos <= 0.79 && m_sceneID == 0)
-		{
-			m_sceneID = 1;
-
-			m_activeScene = m_scenes[m_sceneID]; 
-
-			m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
-
-			m_register = m_activeScene->GetScene();
-		}*/
-	}
-
-	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT))
-	{
-		printf("Right Mouse Button Clicked at (% f, % f)\n", float(evnt.x), float(evnt.y));
-	}
-
-	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_MIDDLE))
-	{
-		printf("Middle Mouse Button Clicked at (% f, % f)\n", float(evnt.x), float(evnt.y));
+		
 	}
 
 	if (m_guiActive)
@@ -817,7 +729,7 @@ void Game::MouseClick(SDL_MouseButtonEvent evnt)
 
 void Game::MouseWheel(SDL_MouseWheelEvent evnt)
 {
-	printf("Mouse Scroll %f\n", float(evnt.y));
+	
 
 	if (m_guiActive)
 	{
@@ -1002,12 +914,44 @@ void Game::UpdateBullet()
 		ECS::GetComponent<Transform>(m_bulletList[i].bulletID).SetPositionX(m_bulletList[i].xPos);
 		ECS::GetComponent<Transform>(m_bulletList[i].bulletID).SetPositionY(m_bulletList[i].yPos);
 		
-		 if (isHitBorder(m_bulletList[i]))
-		{		
+		for (int j = 0; j < m_all_enemies_in_the_room.size();j++) {
+			if (CheckCollision(m_bulletList[i].bulletID, m_all_enemies_in_the_room[j].EnemyID, 13)|| isHitBorder(m_bulletList[i])) { std::cout << "Hit something\n";
 			ECS::DestroyEntity(m_bulletList[i].bulletID);
 			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
 			m_bulletList.erase(m_bulletList.begin() + i);
+			
+		/*	for (int k = 0; k < m_Bettle_spawn.size();k++) {
+				if (m_Bettle_spawn[k].EnemyID==m_all_enemies_in_the_room[j].EnemyID) {
+					ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
+					m_all_enemies_in_the_room.erase(m_all_enemies_in_the_room.begin() + j);
+					m_Bettle_spawn.erase(m_Bettle_spawn.begin() + k);
+					BeetleNum -= 1;
+					
+				}
+			}
+			for (int k = 0; k < m_Lizard_spawn.size(); k++) {
+				if (m_Lizard_spawn[k].EnemyID == m_all_enemies_in_the_room[j].EnemyID) {
+					ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
+					m_all_enemies_in_the_room.erase(m_all_enemies_in_the_room.begin() + j);
+					m_Lizard_spawn.erase(m_Lizard_spawn.begin() + k);
+					LizardNum
+				}
+			}*/
+			if (m_all_enemies_in_the_room[j].EnemyID==m_Boss_spawn.EnemyID) {
+				ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
+				m_all_enemies_in_the_room.clear();
+				m_Lizard_spawn.clear();
+				m_Bettle_spawn.clear();
+				BossNum = 0;
+			}
+
+			break;
+			}
+
+			
 		}
+
+	
 	}
 }
 
@@ -1169,7 +1113,7 @@ void Game::CreateBeetle()
 			Beetle.xDir = 1;
 		}
 		m_Bettle_spawn.push_back(Beetle);
-
+		m_all_enemies_in_the_room.push_back(Beetle);
 		
 		//Setup up the Identifier
 		unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
@@ -1201,12 +1145,16 @@ void Game::UpdateBeetle()
 		if (m_Bettle_spawn[i].yPos >= 70 || m_Bettle_spawn[i].yPos <= -70)
 			m_Bettle_spawn[i].yDir *= -1.f;
 		
+		if (CheckCollision(m_Bettle_spawn[i].EnemyID, EntityIdentifier::MainPlayer(), 15.5)) {
+			std::cout << "Hit by beetle";
+		}
 
 		if (!player_in_room()) {
 
 			ECS::DestroyEntity(m_Bettle_spawn[i].EnemyID);
 			m_Bettle_spawn.erase(m_Bettle_spawn.begin() + i);
 			BeetleNum -=1;
+			m_all_enemies_in_the_room.clear();
 		}
 		
 	}
@@ -1265,6 +1213,7 @@ void Game::CreateLizard()
 	Lizard.change = Lizard.xDir;
 
 	m_Lizard_spawn.push_back(Lizard);
+	m_all_enemies_in_the_room.push_back(Lizard);
 
 	//Setup up the Identifier
 	unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
@@ -1291,10 +1240,11 @@ void Game::UpdateLizard()
 			m_Lizard_spawn[i].change = 1 - m_Lizard_spawn[i].change;
 			m_Lizard_spawn[i].xDir *= -1.f;
 			animController.SetActiveAnim(m_Lizard_spawn[i].change);
-			
-
 		}
 
+		if (CheckCollision(m_Lizard_spawn[i].EnemyID,EntityIdentifier::MainPlayer(),30)) {
+			std::cout << "Hit by lizard";
+		}
 		
 		if (!player_in_room()) {
 
@@ -1302,6 +1252,7 @@ void Game::UpdateLizard()
 			m_Lizard_spawn.erase(m_Lizard_spawn.begin() + i);
 
 			LizardNum -= 1;
+			m_all_enemies_in_the_room.clear();
 		}
 
 	}
@@ -1312,7 +1263,6 @@ void Game::UpdateLizard()
 void Game::CreateBoss()
 
 {
-
 	enemy = true;
 
 
@@ -1366,6 +1316,7 @@ void Game::CreateBoss()
 
 	BossNum = 1;
 
+	m_all_enemies_in_the_room.push_back(m_Boss_spawn);
 
 	if (!HealthBarNum)
 	{
@@ -1418,6 +1369,7 @@ void Game::UpdateBoss()
 				if (m_Boss_spawn.xPos == hero.x) {
 					animController.SetActiveAnim(1);
 				}
+			
 			}
 
 		}
@@ -1433,61 +1385,35 @@ void Game::UpdateBoss()
 		if (!player_in_room()) {
 			ECS::DestroyEntity(m_Boss_spawn.EnemyID);
 			BossNum = 0;
+			m_all_enemies_in_the_room.clear();
 		}
 		
 
+		CheckCollision(m_Boss_spawn.EnemyID,EntityIdentifier::MainPlayer(),60.0);
 	
 }
 
-void Game::CheckCollision()
+bool Game::CheckCollision(int ID_1, int ID_2, float distance)
 {
-	Bullet Boss, Player, bullet;
 
-	auto entityHealth = ECS::CreateEntity();
-	auto& animController = ECS::GetComponent<AnimationController>(entityHealth);
 
-	auto entity = ECS::CreateEntity();
+	auto ID1 = ECS::GetComponent<Transform>(ID_1).GetPosition();
+	auto ID2 = ECS::GetComponent<Transform>(ID_2).GetPosition();
 
-	bullet.xPos = ECS::GetComponent<Transform>(entity).GetPositionX();
-	bullet.yPos = ECS::GetComponent<Transform>(entity).GetPositionY();
+float cal_distance=sqrt(((ID1.x- ID2.x)*(ID1.x - ID2.x))+((ID1.y- ID2.y) * (ID1.y - ID2.y)));
 
-	auto pos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+if (cal_distance<=distance&& (ID_2==EntityIdentifier::MainPlayer()|| ID_1 == EntityIdentifier::MainPlayer())) {
+std::cout << "\nHit1\n";
+EffectManager::CreateLighting(true);
+return true;
+}
+else if (cal_distance <= distance) {
+	std::cout << "\nOTHER hit\n";
+	return true;
+}
 
-	Player.xPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionX();
-	Player.yPos = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPositionY();
+return false;
 
-	Boss.xPos = m_Boss_spawn.xPos;
-	Boss.yPos = m_Boss_spawn.yPos;
-
-	if ((Player.xPos >= Boss.xPos - 60 && Player.xPos <= Boss.xPos + 60) && (Player.yPos <= Boss.yPos + 60 && Player.yPos >= Boss.yPos - 60) && (m_xMap == 1 && m_yMap == 2))
-	{
-		std::cout << "\n IsHit \n" << std::endl;
-		
-		BossHits = true;
-
-	}
-	else
-	{
-		std::cout << "\n Not Hit \n" << std::endl;
-		BossHits = false;
-	}
-
-	if ((bullet.xPos >= Boss.xPos - 10 && bullet.xPos <= Boss.xPos + 10) && (bullet.yPos <= Boss.yPos + 30 && bullet.yPos >= Boss.yPos - 30) && (m_xMap == 1 && m_yMap == 2))
-	{
-		if (animController.GetActiveAnim() > 0) {
-			std::cout << "\n The Boss Was Shot \n" << std::endl;
-			animController.SetActiveAnim(animController.GetActiveAnim() - 1);
-		}
-		else {
-			animController.SetActiveAnim(0);
-		}
-		
-	}
-	else
-	{
-		std::cout << "\n Not Shot \n" << std::endl;
-		
-	}
 }
 
 void Game::BossHealth()
@@ -1536,7 +1462,7 @@ void Game::BossHealth()
 	float y= ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).GetPositionY();
 	
 
-	ECS::GetComponent<Transform>(entityHealth).SetPosition(vec3(x, y + 30, 41.f));
+ 	ECS::GetComponent<Transform>(entityHealth).SetPosition(vec3(x, y + 30, 41.f));
 
 
 

@@ -1,6 +1,5 @@
 #include "EffectManager.h"
 
-#include "Game.h"
 Selectable EffectManager::m_selectable = Selectable("Effect Editor");
 
 int EffectManager::m_numEffects = 0;
@@ -139,26 +138,28 @@ void EffectManager::CreateEditor()
 	
 }
 
-void EffectManager::CreateLighting()
+void EffectManager::CreateLighting(bool bossHit)
 {
 	VignetteEffect* temp = (VignetteEffect*)EffectManager::GetEffect(m_vignette);
 	float innerradius = temp->GetInnerRadius();
 	float outerradius = temp->GetOuterRadius();
 	float opacity = temp->GetOpacity();
 
-		if (Input::GetKeyDown(Key::P) /*|| BossHit = true*/) {
-			innerradius = innerradius - 0.05;
+		if (bossHit) {
+			innerradius = innerradius - 0.00005;
 			temp->SetInnerRadius(innerradius);
 
-			outerradius = outerradius - 0.1;
+			outerradius = outerradius - 0.00001;
 			temp->SetOuterRadius(outerradius);
 
-			opacity = opacity + 0.05;
+			opacity = opacity + 0.000000005;
 			temp->SetOpacity(opacity);
 			if (innerradius >= -2.5) {
 				std::cout << "\n Gameover \n" << std::endl;
 			}
 		}
+
+	
 		
 		/*if (Input::GetKeyDown(Key::K)) {
 			EffectManager::RemoveEffect(m_vignette);
