@@ -1335,7 +1335,7 @@ void Game::CheckCollision()
 	Boss.xPos = m_Boss_spawn.xPos;
 	Boss.yPos = m_Boss_spawn.yPos;
 
-	if ((Player.xPos >= Boss.xPos - 60 && Player.xPos <= Boss.xPos + 60) && (Player.yPos <= Boss.yPos + 60 && Player.yPos >= Boss.yPos - 60))
+	if ((Player.xPos >= Boss.xPos - 60 && Player.xPos <= Boss.xPos + 60) && (Player.yPos <= Boss.yPos + 60 && Player.yPos >= Boss.yPos - 60) && (m_xMap == 1 && m_yMap == 2))
 	{
 		std::cout << "\n IsHit \n" << std::endl;
 		BossHits = true;
