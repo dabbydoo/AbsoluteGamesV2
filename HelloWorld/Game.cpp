@@ -823,7 +823,7 @@ void Game::OpenBottom()
 
 void Game::CreateBullet(int xDir, int yDir)
 {
-	Enemy bullet;
+	Bullet bullet;
 	//Power up animataion file
 	auto bulletSprite = File::LoadJSON("Bullet.json");
 	 
@@ -854,7 +854,7 @@ void Game::CreateBullet(int xDir, int yDir)
 	ECS::GetComponent<Transform>(entity).SetPositionZ(ECS::GetComponent<Transform>(2).GetPosition().z);
 
 	//Record bullet ID
-	bullet.EnemyID = entity;
+	bullet.bulletID = entity;
 
 	//Record bullet position in vector
 	bullet.xPos = ECS::GetComponent<Transform>(entity).GetPositionX();
@@ -872,7 +872,16 @@ void Game::CreateBullet(int xDir, int yDir)
 
 void Game::UpdateBullet()
 {
-	/*for (int i = 0; i < m_bulletList.size(); i++)
+	if (!player_in_room())
+	{
+		for (int i = 0; i < m_bulletList.size(); i++)
+		{
+			ECS::DestroyEntity(m_bulletList[i].bulletID);
+		}
+		m_bulletList.clear();
+	}
+
+	for (int i = 0; i < m_bulletList.size(); i++)
 	{
 		//Update Vector
 		m_bulletList[i].xPos = m_bulletList[i].xPos + m_bulletList[i].xDir;
@@ -883,51 +892,13 @@ void Game::UpdateBullet()
 		ECS::GetComponent<Transform>(m_bulletList[i].bulletID).SetPositionX(m_bulletList[i].xPos);
 		ECS::GetComponent<Transform>(m_bulletList[i].bulletID).SetPositionY(m_bulletList[i].yPos);
 		
-		if (!player_in_room()) {
-			ECS::DestroyEntity(m_bulletList[i].bulletID);
-			m_bulletList.erase(m_bulletList.begin() + i);
-		}
-
 		 if (isHitBorder(m_bulletList[i]))
 		{		
 			ECS::DestroyEntity(m_bulletList[i].bulletID);
 			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
 			m_bulletList.erase(m_bulletList.begin() + i);
-			
 		}
-		
-	} */
-
-
-
-	for (int i = 0; i < m_bulletList.size(); i++)
-	{
-		m_bulletList[i].xPos += m_bulletList[i].xDir * 0.3;
-		m_bulletList[i].yPos += m_bulletList[i].yDir * 0.3;
-
-		ECS::GetComponent<Transform>(m_bulletList[i].EnemyID).SetPositionX(m_bulletList[i].xPos);
-		ECS::GetComponent<Transform>(m_bulletList[i].EnemyID).SetPositionY(m_bulletList[i].yPos);
-		//ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
-
-
-		
-		if (!player_in_room()) {
-
-			ECS::DestroyEntity(m_bulletList[i].EnemyID);
-			m_bulletList.erase(m_bulletList.begin() + i);
-		}
-		else if (isHitBorder(m_bulletList[i]))
-		{
-			ECS::DestroyEntity(m_bulletList[i].EnemyID);
-			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
-			m_bulletList.erase(m_bulletList.begin() + i);
-
-		}
-
 	}
-
-
-
 }
 
 void Game::CreateExplosion(int xPos, int yPos)
@@ -984,19 +955,33 @@ void Game::CreateExplosion(int xPos, int yPos)
 
 void Game::UpdateExplosion()
 {
+	if (!player_in_room())
+	{
+		for (int i = 0; i < m_fireballList.size(); i++)
+		{
+			ECS::DestroyEntity(m_fireballList[i].explosionID);
+		}
+		m_fireballList.clear();
+	}
 	for (int i = 0; i < m_fireballList.size(); i++)
 	{
-		if (!player_in_room()) {
-			ECS::DestroyEntity(m_fireballList[i].explosionID);
-			m_fireballList.erase(m_fireballList.begin() + i);
-		}
-
-		if ((float(clock() - m_fireballList[i].beginTime)/CLOCKS_PER_SEC > .3))
+		if ((float(clock() - m_fireballList[i].beginTime) / CLOCKS_PER_SEC > .3))
 		{
 			ECS::DestroyEntity(m_fireballList[i].explosionID);
 			m_fireballList.erase(m_fireballList.begin() + i);
 		}
 	}
+	
+}
+
+bool Game::isHitBorder(Bullet bullet)
+{
+	if (bullet.xPos > 145 || bullet.xPos < -148 || bullet.yPos > 70 || bullet.yPos < -71)
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
 bool Game::isHitBorder(Enemy bullet)
@@ -1109,14 +1094,14 @@ void Game::UpdateBeetle()
 			m_Bettle_spawn[i].yDir *= -1.f;
 		
 
-	if (!player_in_room()) {
+		if (!player_in_room()) {
 
 			ECS::DestroyEntity(m_Bettle_spawn[i].EnemyID);
 			m_Bettle_spawn.erase(m_Bettle_spawn.begin() + i);
 			BeetleNum -=1;
 		}
 		
-		}
+	}
 }
 
 void Game::CreateLizard()
@@ -1383,7 +1368,7 @@ void Game::DestroyEntities()
 {
 	for (int i = 0; i < m_bulletList.size(); i++)
 	{
-			ECS::DestroyEntity(m_bulletList[i].EnemyID);
+			ECS::DestroyEntity(m_bulletList[i].bulletID);
 			m_bulletList.erase(m_bulletList.begin() + i);
 	}
 

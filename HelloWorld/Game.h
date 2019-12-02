@@ -83,6 +83,7 @@ public:
 	void UpdateExplosion();
 
 	//Bullet collision to border
+	bool isHitBorder(Bullet bullet);
 	bool isHitBorder(Enemy bullet);
 
 	void CreateBeetle();
@@ -136,7 +137,7 @@ private:
 	bool enemy = true;
 
 	//Bullet
-	std::vector<Enemy> m_bulletList;
+	std::vector<Bullet> m_bulletList;
 	//Fireball
 	std::vector<Explosion> m_fireballList;
 
