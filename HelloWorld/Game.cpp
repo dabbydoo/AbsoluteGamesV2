@@ -11,6 +11,7 @@ static unsigned int BeetleNum = 0;
 static unsigned int LizardNum = 0;
 bool HealthBarNum = false;
 
+bool win = false;
 
 
 Game::~Game()
@@ -129,254 +130,255 @@ void Game::Update()
 {
 	if (m_sceneID == 1)
 	{
-		if (BossNum < 1 && m_xMap == 1 && m_yMap == 2)
-		{
-			CreateBoss();
-		}
+		if (!win) {
+			if (BossNum < 1 && m_xMap == 1 && m_yMap == 2)
+			{
+				CreateBoss();
+			}
 
 
-		int mapArray[5][5];
-		vec3 playerPos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+			int mapArray[5][5];
+			vec3 playerPos = m_register->get<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
 
-		//walls	
-		//CloseTop();
-		//CloseRight();
-		//CloseLeft();
-		//CloseBottom();
-		//OpenTop();
-		//OpenBottom();
-		//OpenLeft();
-		//OpenRight();
+			//walls	
+			//CloseTop();
+			//CloseRight();
+			//CloseLeft();
+			//CloseBottom();
+			//OpenTop();
+			//OpenBottom();
+			//OpenLeft();
+			//OpenRight();
 
-		//Update bullet position
-		UpdateBullet();
+			//Update bullet position
+			UpdateBullet();
 
-		//Update Explosion
-		UpdateExplosion();
-
-		UpdateBeetle();
-
-		UpdateLizard();
-
-		if (BossNum>0) {
-			UpdateBoss();
-			UpdateHealthbar();
-		}
-
-
-		auto& animControllerr = ECS::GetComponent<AnimationController>(1);
-
-		//Moving to the next room
-		if (playerPos.x > 190) {
-			CreateBeetle();
-			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionX((playerPos.x = -190));
-			m_xMap += 1;
-		}
-		if (playerPos.y > 100) {
-
-			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionY((playerPos.y = -100));
-			m_yMap -= 1;
-		}
-		if (playerPos.x < -190) {
-
-			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionX((playerPos.x = 190));
-			m_xMap -= 1;
-		}
-		if (playerPos.y < -100) { 
-
-			m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionY((playerPos.y = 100));
-			m_yMap += 1;
-
-		}
-
-
-		//Col 1
-		if (m_xMap == 1 && m_yMap == 1) {
-			//Load TopLeft
-			animControllerr.SetActiveAnim(0);
+			//Update Explosion
+			UpdateExplosion();
 
 			UpdateBeetle();
+
 			UpdateLizard();
-			if (BeetleNum < 2) {
+
+			if (BossNum > 0) {
+				UpdateBoss();
+				UpdateHealthbar();
+			}
+
+
+			auto& animControllerr = ECS::GetComponent<AnimationController>(1);
+
+			//Moving to the next room
+			if (playerPos.x > 190) {
 				CreateBeetle();
+				m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionX((playerPos.x = -190));
+				m_xMap += 1;
+			}
+			if (playerPos.y > 100) {
+
+				m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionY((playerPos.y = -100));
+				m_yMap -= 1;
+			}
+			if (playerPos.x < -190) {
+
+				m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionX((playerPos.x = 190));
+				m_xMap -= 1;
+			}
+			if (playerPos.y < -100) {
+
+				m_register->get<Transform>(EntityIdentifier::MainPlayer()).SetPositionY((playerPos.y = 100));
+				m_yMap += 1;
 
 			}
-			if (LizardNum < 1) {
-				CreateLizard();
+
+
+			//Col 1
+			if (m_xMap == 1 && m_yMap == 1) {
+				//Load TopLeft
+				animControllerr.SetActiveAnim(0);
+
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 1) {
+					CreateLizard();
+				}
+
+				CloseTop();
+				CloseLeft();
+				OpenBottom();
+				OpenRight();
+
+
+			}
+			if (m_xMap == 1 && m_yMap == 2 || m_xMap == 1 && m_yMap == 3 || m_xMap == 1 && m_yMap == 4) {
+				//Load MiddleLeft
+				animControllerr.SetActiveAnim(3);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 1) {
+					CreateLizard();
+				}
+
+
+				//CheckCollision();
+				CloseLeft();
+				OpenTop();
+				OpenBottom();
+				OpenRight();
+
+			}
+			if (m_xMap == 1 && m_yMap == 5) {
+				//Load BottomLeft
+				animControllerr.SetActiveAnim(6);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 1) {
+					CreateLizard();
+				}
+
+				CloseLeft();
+				CloseBottom();
+				OpenTop();
+				OpenRight();
 			}
 
-			CloseTop();
-			CloseLeft();
-			OpenBottom();
-			OpenRight();
+			//Col 5
+			if (m_xMap == 5 && m_yMap == 1) {
+				//Load TopRight
+				animControllerr.SetActiveAnim(2);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
 
+				}
+				if (LizardNum < 2) {
+					CreateLizard();
+				}
 
+				CloseTop();
+				CloseRight();
+				OpenBottom();
+				OpenLeft();
+
+			}
+			if (m_xMap == 5 && m_yMap == 2 || m_xMap == 5 && m_yMap == 3 || m_xMap == 5 && m_yMap == 4) {
+				//Load MiddleRight
+				animControllerr.SetActiveAnim(5);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 3) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 2) {
+					CreateLizard();
+				}
+
+				CloseRight();
+				OpenTop();
+				OpenBottom();
+				OpenLeft();
+
+			}
+			if (m_xMap == 5 && m_yMap == 5) {
+				//Load BottomRight
+				animControllerr.SetActiveAnim(8);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 2) {
+					CreateLizard();
+				}
+
+				CloseRight();
+				CloseBottom();
+				OpenTop();
+				OpenLeft();
+
+			}
+
+			//Top middle
+			if (m_xMap == 2 && m_yMap == 1 || m_xMap == 3 && m_yMap == 1 || m_xMap == 4 && m_yMap == 1) {
+				//Load TopMiddle
+				animControllerr.SetActiveAnim(1);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 2) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 1) {
+					CreateLizard();
+				}
+
+				CloseTop();
+				OpenBottom();
+				OpenLeft();
+				OpenRight();
+			}
+
+			//Middle Middle
+			if (m_xMap == 2 && m_yMap == 2 || m_xMap == 2 && m_yMap == 3 || m_xMap == 2 && m_yMap == 4 || m_xMap == 3 && m_yMap == 2 || m_xMap == 3 && m_yMap == 3 || m_xMap == 3 && m_yMap == 4 || m_xMap == 4 && m_yMap == 2 || m_xMap == 4 && m_yMap == 3 || m_xMap == 4 && m_yMap == 4) {
+				//Load Middle
+			//	std::cout << "I am in the middle room"<<std::endl;
+				animControllerr.SetActiveAnim(4);
+
+				UpdateBeetle();
+				UpdateLizard();
+				//UpdateBeetle();
+				if (BeetleNum < 3) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 1) {
+					CreateLizard();
+				}
+
+				OpenTop();
+				OpenBottom();
+				OpenLeft();
+				OpenRight();
+
+			}
+
+			//Bottom Middle
+			if (m_xMap == 2 && m_yMap == 5 || m_xMap == 3 && m_yMap == 5 || m_xMap == 4 && m_yMap == 5) {
+				//Load BottomMiddle
+				animControllerr.SetActiveAnim(7);
+				UpdateBeetle();
+				UpdateLizard();
+				if (BeetleNum < 3) {
+					CreateBeetle();
+
+				}
+				if (LizardNum < 2) {
+					CreateLizard();
+				}
+
+				CloseBottom();
+				OpenTop();
+				OpenLeft();
+				OpenRight();
+			}
 		}
-		if (m_xMap == 1 && m_yMap == 2 || m_xMap == 1 && m_yMap == 3 || m_xMap == 1 && m_yMap == 4) {
-			//Load MiddleLeft
-			animControllerr.SetActiveAnim(3);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 2) {
-				CreateBeetle();
 
-			}
-			if (LizardNum < 1) {
-				CreateLizard();
-			}
-
-			
-			//CheckCollision();
-			CloseLeft();
-			OpenTop();
-			OpenBottom();
-			OpenRight();
-
-		}
-		if (m_xMap == 1 && m_yMap == 5) {
-			//Load BottomLeft
-			animControllerr.SetActiveAnim(6);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 2) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 1) {
-				CreateLizard();
-			}
-
-			CloseLeft();
-			CloseBottom();
-			OpenTop();
-			OpenRight();
-		}
-
-		//Col 5
-		if (m_xMap == 5 && m_yMap == 1) {
-			//Load TopRight
-			animControllerr.SetActiveAnim(2);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 2) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 2) {
-				CreateLizard();
-			}
-
-			CloseTop();
-			CloseRight();
-			OpenBottom();
-			OpenLeft();
-
-		}
-		if (m_xMap == 5 && m_yMap == 2 || m_xMap == 5 && m_yMap == 3 || m_xMap == 5 && m_yMap == 4) {
-			//Load MiddleRight
-			animControllerr.SetActiveAnim(5);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 3) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 2) {
-				CreateLizard();
-			}
-
-			CloseRight();
-			OpenTop();
-			OpenBottom();
-			OpenLeft();
-
-		}
-		if (m_xMap == 5 && m_yMap == 5) {
-			//Load BottomRight
-			animControllerr.SetActiveAnim(8);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 2) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 2) {
-				CreateLizard();
-			}
-
-			CloseRight();
-			CloseBottom();
-			OpenTop();
-			OpenLeft();
-
-		}
-
-		//Top middle
-		if (m_xMap == 2 && m_yMap == 1 || m_xMap == 3 && m_yMap == 1 || m_xMap == 4 && m_yMap == 1) {
-			//Load TopMiddle
-			animControllerr.SetActiveAnim(1);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 2) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 1) {
-				CreateLizard();
-			}
-
-			CloseTop();
-			OpenBottom();
-			OpenLeft();
-			OpenRight();
-		}
-
-		//Middle Middle
-		if (m_xMap == 2 && m_yMap == 2 || m_xMap == 2 && m_yMap == 3 || m_xMap == 2 && m_yMap == 4 || m_xMap == 3 && m_yMap == 2 || m_xMap == 3 && m_yMap == 3 || m_xMap == 3 && m_yMap == 4 || m_xMap == 4 && m_yMap == 2 || m_xMap == 4 && m_yMap == 3 || m_xMap == 4 && m_yMap == 4) {
-			//Load Middle
-		//	std::cout << "I am in the middle room"<<std::endl;
-			animControllerr.SetActiveAnim(4);
-			
-			UpdateBeetle();
-			UpdateLizard();
-			//UpdateBeetle();
-			if (BeetleNum < 3) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 1) {
-				CreateLizard();
-			}
-
-			OpenTop();
-			OpenBottom();
-			OpenLeft();
-			OpenRight();
-
-		}
-
-		//Bottom Middle
-		if (m_xMap == 2 && m_yMap == 5 || m_xMap == 3 && m_yMap == 5 || m_xMap == 4 && m_yMap == 5) {
-			//Load BottomMiddle
-			animControllerr.SetActiveAnim(7);
-			UpdateBeetle();
-			UpdateLizard();
-			if (BeetleNum < 3) {
-				CreateBeetle();
-
-			}
-			if (LizardNum < 2) {
-				CreateLizard();
-			}
-
-			CloseBottom();
-			OpenTop();
-			OpenLeft();
-			OpenRight();
-		}
-			}
-
-
+	}
 
 	//Update timer
 	Timer::Update();
@@ -920,7 +922,7 @@ void Game::UpdateBullet()
 			CreateExplosion(m_bulletList[i].xPos, m_bulletList[i].yPos);
 			m_bulletList.erase(m_bulletList.begin() + i);
 			
-		/*	for (int k = 0; k < m_Bettle_spawn.size();k++) {
+			for (int k = 0; k < m_Bettle_spawn.size();k++) {
 				if (m_Bettle_spawn[k].EnemyID==m_all_enemies_in_the_room[j].EnemyID) {
 					ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
 					m_all_enemies_in_the_room.erase(m_all_enemies_in_the_room.begin() + j);
@@ -934,15 +936,17 @@ void Game::UpdateBullet()
 					ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
 					m_all_enemies_in_the_room.erase(m_all_enemies_in_the_room.begin() + j);
 					m_Lizard_spawn.erase(m_Lizard_spawn.begin() + k);
-					LizardNum
+					LizardNum -= 1;
 				}
-			}*/
+			}
 			if (m_all_enemies_in_the_room[j].EnemyID==m_Boss_spawn.EnemyID) {
 				ECS::DestroyEntity(m_all_enemies_in_the_room[j].EnemyID);
 				m_all_enemies_in_the_room.clear();
 				m_Lizard_spawn.clear();
 				m_Bettle_spawn.clear();
 				BossNum = 0;
+				win = true;
+
 			}
 
 			break;
@@ -1128,7 +1132,12 @@ void Game::CreateBeetle()
 
 void Game::UpdateBeetle()
 {
-	
+	if (m_all_enemies_in_the_room.size() < m_Bettle_spawn.size()) {
+		for (int i = 0; i < m_Bettle_spawn.size(); i++) {
+			ECS::DestroyEntity(m_Bettle_spawn[i].EnemyID);
+		}
+		m_Bettle_spawn.clear();
+	}
 	for (int i = 0; i < m_Bettle_spawn.size(); i++)
 	{
 		m_Bettle_spawn[i].xPos += m_Bettle_spawn[i].xDir*0.3;
@@ -1225,6 +1234,12 @@ void Game::CreateLizard()
 
 void Game::UpdateLizard()
 {
+	if (m_all_enemies_in_the_room.size()<m_Lizard_spawn.size()) {
+		for (int i = 0; i < m_Lizard_spawn.size();i++) {
+			ECS::DestroyEntity(m_Lizard_spawn[i].EnemyID);
+		}
+		m_Lizard_spawn.clear();
+	}
 
 	for (int i = 0; i < m_Lizard_spawn.size(); i++)
 	{

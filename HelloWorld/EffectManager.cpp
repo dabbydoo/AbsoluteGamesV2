@@ -146,13 +146,13 @@ void EffectManager::CreateLighting(bool bossHit)
 	float opacity = temp->GetOpacity();
 
 		if (bossHit) {
-			innerradius = innerradius - 0.00005;
+			innerradius = innerradius - 0.0005;
 			temp->SetInnerRadius(innerradius);
 
-			outerradius = outerradius - 0.00001;
+			outerradius = outerradius - 0.0001;
 			temp->SetOuterRadius(outerradius);
 
-			opacity = opacity + 0.000000005;
+			opacity = opacity + 0.005;
 			temp->SetOpacity(opacity);
 			if (innerradius >= -2.5) {
 				std::cout << "\n Gameover \n" << std::endl;
