@@ -66,6 +66,11 @@ void Game::InitGame()
 	//Inititalizes the scene, //Save, uncomment to save and comment the load
 	m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 	
+	//Menu Button
+	if (m_sceneID == 0)
+	{
+		CreateMenuButton();
+	}
 	//Load uncomment to load and comment the save
 	//*m_activeScene = File::LoadJSON("Hello World.json"); //Hello World Sprite
 	//*m_activeScene = File::LoadJSON("Hello Anime World.json"); //Load the saved scene
@@ -539,12 +544,111 @@ void Game::KeyboardHold()
 //Keys being pressed once
 void Game::KeyboardDown()
 {
+	//Menu input
+	if (m_sceneID == 0)
+	{
+		/*auto& animPlayButton1 = ECS::GetComponent<AnimationController>(2);
+		auto& animPlayButton2 = ECS::GetComponent<AnimationController>(3);
+		auto& animPlayButton3 = ECS::GetComponent<AnimationController>(4);*/
+
+		if (Input::GetKeyDown(Key::UpArrow))
+		{
+			m_activeMenuButton--;
+			if (m_activeMenuButton < 0)
+			{
+				m_activeMenuButton = 3;
+			}
+		}
+
+		if (Input::GetKeyDown(Key::DownArrow))
+		{
+			m_activeMenuButton++;
+			if (m_activeMenuButton > 3)
+			{
+				m_activeMenuButton = 0;
+			}
+		}
+		//Play button
+		if (m_activeMenuButton == 0)
+		{
+			ECS::GetComponent<Transform>(m_menuList[0].buttonID).SetPosition(vec3(0.f, 0.f, 4.f));
+			ECS::GetComponent<Transform>(m_menuList[1].buttonID).SetPosition(vec3(0.f, 0.f, 3.f));
+			ECS::GetComponent<Transform>(m_menuList[2].buttonID).SetPosition(vec3(0.f, 0.f, 2.f));
+			ECS::GetComponent<Transform>(m_menuList[3].buttonID).SetPosition(vec3(0.f, 0.f, 1.f));
+		}
+		//Instruction Button
+		if (m_activeMenuButton == 1)
+		{
+			ECS::GetComponent<Transform>(m_menuList[0].buttonID).SetPosition(vec3(0.f, 0.f, 3.f));
+			ECS::GetComponent<Transform>(m_menuList[1].buttonID).SetPosition(vec3(0.f, 0.f, 4.f));
+			ECS::GetComponent<Transform>(m_menuList[2].buttonID).SetPosition(vec3(0.f, 0.f, 2.f));
+			ECS::GetComponent<Transform>(m_menuList[3].buttonID).SetPosition(vec3(0.f, 0.f, 1.f));
+		}
+		//Credit Button
+		if (m_activeMenuButton == 2)
+		{
+			ECS::GetComponent<Transform>(m_menuList[0].buttonID).SetPosition(vec3(0.f, 0.f, 3.f));
+			ECS::GetComponent<Transform>(m_menuList[1].buttonID).SetPosition(vec3(0.f, 0.f, 2.f));
+			ECS::GetComponent<Transform>(m_menuList[2].buttonID).SetPosition(vec3(0.f, 0.f, 4.f));
+			ECS::GetComponent<Transform>(m_menuList[3].buttonID).SetPosition(vec3(0.f, 0.f, 1.f));
+		}
+		//Exit Button
+		if (m_activeMenuButton == 3)
+		{
+			ECS::GetComponent<Transform>(m_menuList[0].buttonID).SetPosition(vec3(0.f, 0.f, 3.f));
+			ECS::GetComponent<Transform>(m_menuList[1].buttonID).SetPosition(vec3(0.f, 0.f, 2.f));
+			ECS::GetComponent<Transform>(m_menuList[2].buttonID).SetPosition(vec3(0.f, 0.f, 1.f));
+			ECS::GetComponent<Transform>(m_menuList[3].buttonID).SetPosition(vec3(0.f, 0.f, 4.f));
+		}
+
+		if (Input::GetKeyDown(Key::Enter) && m_activeMenuButton >= 0 && m_activeMenuButton <= 3)
+		{
+			//Play Game
+			if (m_activeMenuButton == 0)
+			{
+				m_sceneID = 1;
+
+				m_activeScene = m_scenes[m_sceneID];
+				m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
+				m_register = m_activeScene->GetScene();
+
+				isGuideScreen = false;
+				isCreditScreen = false;
+			}
+
+			//Instruction Screen
+			if (m_activeMenuButton == 1)
+			{
+				ECS::GetComponent<Transform>(m_menuList[4].buttonID).SetPosition(vec3(0.f, 0.f, 10.f));
+				isGuideScreen = true;
+				isCreditScreen = false;
+			}
+
+			//Credit Screen
+			if (m_activeMenuButton == 2)
+			{
+				ECS::GetComponent<Transform>(m_menuList[5].buttonID).SetPosition(vec3(0.f, 0.f, 10.f));
+				isGuideScreen = false;
+				isCreditScreen = true;
+			}
+
+		}
+		//Exit Instruction or guide screen
+		if (Input::GetKeyDown(Key::Escape) && (isGuideScreen | isCreditScreen))
+		{
+			ECS::GetComponent<Transform>(m_menuList[4].buttonID).SetPosition(vec3(0.f, 0.f, 1.1f));
+			ECS::GetComponent<Transform>(m_menuList[5].buttonID).SetPosition(vec3(0.f, 0.f, 1.2f));
+		}
+
+	}
+	//Game Input
 	if (m_sceneID == 1)
 	{
 
-		/*if (Input::GetKeyDown(Key::Escape))
+		if (Input::GetKeyDown(Key::Escape))
 		{
-			//DestroyEntities();
+			//DOESNT WORK
+			/*//DestroyEntities();
 
 			m_sceneID = 0;
 
@@ -553,7 +657,8 @@ void Game::KeyboardDown()
 			m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 
 			m_register = m_activeScene->GetScene();
-		}*/
+			*/
+		}
 
 		if (Input::GetKeyDown(Key::F4))
 		{
@@ -674,7 +779,7 @@ void Game::MouseClick(SDL_MouseButtonEvent evnt)
 		float yPos = float(evnt.y) / float(BackEnd::GetWindowHeight());
 
 		printf("Left Mouse Button Clicked at (% f, % f)\n", float(evnt.x) / float(BackEnd::GetWindowWidth()), float(evnt.y) / float(BackEnd::GetWindowHeight()));
-		if (xPos >= 0.18 && xPos <= 0.84 && yPos >= 0.56 && yPos <= 0.79 && m_sceneID == 0)
+		/*if (xPos >= 0.18 && xPos <= 0.84 && yPos >= 0.56 && yPos <= 0.79 && m_sceneID == 0)
 		{
 			m_sceneID = 1;
 
@@ -683,7 +788,7 @@ void Game::MouseClick(SDL_MouseButtonEvent evnt)
 			m_activeScene->InitScene(float(BackEnd::GetWindowWidth()), float(BackEnd::GetWindowHeight()));
 
 			m_register = m_activeScene->GetScene();
-		}
+		}*/
 	}
 
 	if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_RIGHT))
@@ -1546,5 +1651,152 @@ void Game::DestroyEntities()
 	}
 }
 
+void Game::CreateMenuButton()
+{
+	{
+		MenuButton ButtonID;
+
+		//Creates Main Menu
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "Play.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 6.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Play Button");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+	{
+		MenuButton ButtonID;
+
+		//Creates Instruction Button
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "Instructions.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 5.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Instruction Button");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+	{
+		MenuButton ButtonID;
+
+		//Creates Credit Button
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "Credit.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 4.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Credit Button");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+	{
+		MenuButton ButtonID;
+
+		//Creates Exit Button
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "Exit.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 3.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Exit Button");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+	{
+		MenuButton ButtonID;
+
+		//Creates Instruction Screen
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "guide.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 2.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Instruction Screen");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+	{
+		MenuButton ButtonID;
+
+		//Creates Instruction Screen
+		auto entity = ECS::CreateEntity();
+		//Add components
+		ECS::AttachComponent<Sprite>(entity);
+		ECS::AttachComponent<Transform>(entity);
+
+		//Sets up components
+		std::string MenuScreen = "creditScreen.png"; //400, 200
+		ECS::GetComponent<Sprite>(entity).LoadSprite(MenuScreen, 380, 200);
+
+		ECS::GetComponent<Transform>(entity).SetPosition(vec3(0.f, 0.f, 1.f));
+		//Setup up the Identifier
+		unsigned int bitHolder = 0x0;
+
+		ECS::SetUpIdentifier(entity, bitHolder, "Credit Screen");
+
+		//Record menu ID
+		ButtonID.buttonID = entity;
+
+		m_menuList.push_back(ButtonID);
+	}
+}
 
 

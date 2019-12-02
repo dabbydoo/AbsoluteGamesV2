@@ -115,6 +115,8 @@ public:
 
 	void DestroyEntities();
 
+	void CreateMenuButton();
+
 
 //	void Create_close_room();
 
@@ -173,6 +175,12 @@ private:
 	bool BossHits = false;
 	bool lighting = true;
 
+	//Menu List
+	int m_activeMenuButton = 0;
+	std::vector<MenuButton> m_menuList;
+
+	bool isCreditScreen = false;
+	bool isGuideScreen = false;
 };
 
 

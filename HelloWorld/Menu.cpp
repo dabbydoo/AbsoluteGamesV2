@@ -29,24 +29,6 @@ void Menu::InitScene(float windowWidth, float windowHeight)
 		ECS::SetIsMainCamera(entity, true);
 	}
 
-	//Menu
-	{
-		//Creates Main Menu
-		auto entityLoad = ECS::CreateEntity();
-		//Add components
-		ECS::AttachComponent<Sprite>(entityLoad);
-		ECS::AttachComponent<Transform>(entityLoad);
-
-		//Sets up components
-		std::string MenuScreen = "TitleScreen.jpg"; //400, 200
-		ECS::GetComponent<Sprite>(entityLoad).LoadSprite(MenuScreen, 380, 200);
-
-		ECS::GetComponent<Transform>(entityLoad).SetPosition(vec3(0.f, 0.f, 50.f));
-		//Setup up the Identifier
-		unsigned int bitHolder = 0x0;
-		ECS::SetUpIdentifier(entityLoad, bitHolder, "Loading Menu");
-
-	}
 
 
 }

@@ -10,3 +10,9 @@ public:
 	void InitScene(float windowWidth, float windowHeight) override;
 
 };
+
+struct MenuButton
+{
+	int buttonID;
+
+};
