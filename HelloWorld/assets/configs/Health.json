@@ -1,0 +1,68 @@
+{
+  "Health0": {
+    "Frame0": [ 1.0, 135.0, 903.0, 1.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health1": {
+    "Frame0": [ 1.0, 270.0, 903.0, 136.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health10": {
+    "Frame0": [ 1.0, 1375.0, 903.0, 1241.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health2": {
+    "Frame0": [ 1.0, 305.0, 903.0, 271.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health3": {
+    "Frame0": [ 1.0, 440.0, 903.0, 306.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health4": {
+    "Frame0": [ 1.0, 575.0, 903.0, 441.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health5": {
+    "Frame0": [ 1.0, 700.0, 903.0, 576.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health6": {
+    "Frame0": [ 1.0, 835.0, 903.0, 701.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health7": {
+    "Frame0": [ 1.0, 970.0, 903.0, 836.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health8": {
+    "Frame0": [ 1.0, 1105.0, 903.0, 971.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  },
+  "Health9": {
+    "Frame0": [ 1.0, 1240.0, 903.0, 1106.0 ],
+    "NumFrames": 1,
+    "Repeating": false,
+    "SecsPerFrame": 0.0
+  }
+}

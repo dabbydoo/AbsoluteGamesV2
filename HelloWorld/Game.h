@@ -103,6 +103,8 @@ public:
 
 	void CheckCollision();
 
+	void BossHealth();
+
 	void ShadowEffect();
 
 	void collisionEffect();
@@ -110,6 +112,8 @@ public:
 	bool player_in_room();
 
 	void DestroyEntities();
+
+
 //	void Create_close_room();
 
 private:
@@ -150,6 +154,7 @@ private:
 	std::vector<Enemy>m_Bettle_spawn;
 	std::vector<Enemy>m_Lizard_spawn;
 	Enemy m_Boss_spawn;
+	Enemy m_Boss_Health;
 
 	//Bullet fire rate
 	int m_fireRate = 25;

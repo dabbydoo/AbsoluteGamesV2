@@ -216,6 +216,7 @@ void Game::Update()
 				CreateLizard();
 			}
 
+			
 			CheckCollision();
 			CloseLeft();
 			OpenTop();
@@ -330,7 +331,7 @@ void Game::Update()
 			UpdateBeetle();
 			UpdateLizard();
 			//UpdateBeetle();
-			if (BeetleNum < 6) {
+			if (BeetleNum < 3) {
 				CreateBeetle();
 
 			}
@@ -1256,6 +1257,8 @@ void Game::CreateBoss()
 
 	BossNum = 1;
 
+	BossHealth();
+
 }
 
 void Game::UpdateBoss()
@@ -1346,6 +1349,63 @@ void Game::CheckCollision()
 		std::cout << "\n Not Hit \n" << std::endl;
 		BossHits = false;
 	}
+}
+
+void Game::BossHealth()
+{
+	auto Health = File::LoadJSON("Health.json");
+
+	//Creates entity Boss
+	auto entityHealth = ECS::CreateEntity();
+
+	//Add components
+	ECS::AttachComponent<Sprite>(entityHealth);
+	ECS::AttachComponent<Transform>(entityHealth);
+	ECS::AttachComponent<AnimationController>(entityHealth);
+	//ECS::AttachComponent<HealthBar>(entityHealth);
+
+	//Sets up components
+	std::string image = "HealthBar.png";
+	auto& animController = ECS::GetComponent<AnimationController>(entityHealth);
+	animController.InitUVs(image);
+
+	//Adds first Animation
+	animController.AddAnimation(Health["Health0"]);
+	animController.AddAnimation(Health["Health1"]);
+	animController.AddAnimation(Health["Health2"]);
+	animController.AddAnimation(Health["Health3"]);
+	animController.AddAnimation(Health["Health4"]);
+	animController.AddAnimation(Health["Health5"]);
+	animController.AddAnimation(Health["Health6"]);
+	animController.AddAnimation(Health["Health7"]);
+	animController.AddAnimation(Health["Health8"]);
+	animController.AddAnimation(Health["Health9"]);
+	animController.AddAnimation(Health["Health10"]);
+
+
+	m_Boss_Health.EnemyID = entityHealth;
+
+	//Set first anitmation
+	animController.SetActiveAnim(0);
+
+	//gets first animation
+
+
+	ECS::GetComponent<Sprite>(entityHealth).LoadSprite(image, 40, 5, true, &animController);
+
+	float x=ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).GetPositionX();
+	float y= ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).GetPositionY();
+	
+
+	ECS::GetComponent<Transform>(entityHealth).SetPosition(vec3(x, y + 30, 41.f));
+
+
+
+	//Setup up the Identifier
+	unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
+	ECS::SetUpIdentifier(entityHealth, bitHolder, "Boss Enemy");
+
+	
 }
 
 

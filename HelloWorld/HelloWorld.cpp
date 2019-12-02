@@ -434,6 +434,53 @@ void HelloWorld::InitScene(float windowWidth, float windowHeight)
 		unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
 		ECS::SetUpIdentifier(entityBo, bitHolder, "Boss Entity");
 	}
+
+	{
+		//Boss animation file
+		auto Health = File::LoadJSON("Health.json");
+
+		//Creates entity Boss
+		auto entityHealth = ECS::CreateEntity();
+
+		//Add components
+		ECS::AttachComponent<Sprite>(entityHealth);
+		ECS::AttachComponent<Transform>(entityHealth);
+		ECS::AttachComponent<AnimationController>(entityHealth);
+		ECS::AttachComponent<HealthBar>(entityHealth);
+
+		//Sets up components
+		std::string BossHealth = "HealthBar.png";
+		auto& animController = ECS::GetComponent<AnimationController>(entityHealth);
+		animController.InitUVs(BossHealth);
+
+		//Adds first Animation
+		animController.AddAnimation(Health["Health0"]);
+		animController.AddAnimation(Health["Health1"]);
+		animController.AddAnimation(Health["Health2"]);
+		animController.AddAnimation(Health["Health3"]);
+		animController.AddAnimation(Health["Health4"]);
+		animController.AddAnimation(Health["Health5"]);
+		animController.AddAnimation(Health["Health6"]);
+		animController.AddAnimation(Health["Health7"]);
+		animController.AddAnimation(Health["Health8"]);
+		animController.AddAnimation(Health["Health9"]);
+		animController.AddAnimation(Health["Health10"]);
+
+		//Set first anitmation
+		animController.SetActiveAnim(10);
+
+		//gets first animation
+		auto& anim = animController.GetAnimation(10);
+
+		//ECS::GetComponent<Sprite>(entityBo).LoadSprite(Boss, 108/2, 151/2,true, &animController);
+		ECS::GetComponent<Sprite>(entityHealth).SetUVs(vec2(1.f, 152.f), vec2(113.f, 1.f));
+		//ECS::GetComponent<Transform>(entityBo).SetPosition(vec3(100.f, -30.f, 22.f));
+
+		//Setup up the Identifier
+		unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
+		ECS::SetUpIdentifier(entityHealth, bitHolder, "Boss HealthBar");
+	}
+
 }
 
 
