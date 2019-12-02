@@ -52,6 +52,8 @@ void Game::InitGame()
 	//Initializes the backend
 	BackEnd::InitBackEnd(m_name);
 
+	BackEnd::GetWindow()->SetFullscreen(true);
+
 	//Grabs the initialized window
 	m_window = BackEnd::GetWindow();
 
