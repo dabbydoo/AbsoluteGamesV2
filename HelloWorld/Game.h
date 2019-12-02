@@ -105,6 +105,8 @@ public:
 
 	void BossHealth();
 
+	void UpdateHealthbar();
+
 	void ShadowEffect();
 
 	void collisionEffect();
@@ -155,6 +157,7 @@ private:
 	std::vector<Enemy>m_Lizard_spawn;
 	Enemy m_Boss_spawn;
 	Enemy m_Boss_Health;
+	Enemy m_Health_Bar;
 
 	//Bullet fire rate
 	int m_fireRate = 25;

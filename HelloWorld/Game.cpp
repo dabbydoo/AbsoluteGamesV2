@@ -9,6 +9,7 @@
 static unsigned int BossNum = 0;
 static unsigned int BeetleNum = 0;
 static unsigned int LizardNum = 0;
+bool HealthBarNum = false;
 
 
 
@@ -152,6 +153,7 @@ void Game::Update()
 
 		if (BossNum>0) {
 			UpdateBoss();
+			UpdateHealthbar();
 		}
 
 
@@ -1257,8 +1259,12 @@ void Game::CreateBoss()
 
 	BossNum = 1;
 
-	BossHealth();
 
+	if (!HealthBarNum)
+	{
+		BossHealth();
+	}
+		
 }
 
 void Game::UpdateBoss()
@@ -1383,18 +1389,18 @@ void Game::BossHealth()
 	animController.AddAnimation(Health["Health10"]);
 
 
-	m_Boss_Health.EnemyID = entityHealth;
+	m_Health_Bar.EnemyID = entityHealth;
 
 	//Set first anitmation
-	animController.SetActiveAnim(0);
+	animController.SetActiveAnim(10);
 
 	//gets first animation
 
 
 	ECS::GetComponent<Sprite>(entityHealth).LoadSprite(image, 40, 5, true, &animController);
 
-	float x=ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).GetPositionX();
-	float y= ECS::GetComponent<Transform>(m_Boss_spawn.EnemyID).GetPositionY();
+	float x=ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).GetPositionX();
+	float y= ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).GetPositionY();
 	
 
 	ECS::GetComponent<Transform>(entityHealth).SetPosition(vec3(x, y + 30, 41.f));
@@ -1403,10 +1409,46 @@ void Game::BossHealth()
 
 	//Setup up the Identifier
 	unsigned int bitHolder = EntityIdentifier::SpriteBit() | EntityIdentifier::TransformBit() | EntityIdentifier::AnimationBit();
-	ECS::SetUpIdentifier(entityHealth, bitHolder, "Boss Enemy");
+	ECS::SetUpIdentifier(entityHealth, bitHolder, "HealthBar");
+
+	HealthBarNum = true;
+}
+
+void Game::UpdateHealthbar()
+{
+
+	Enemy Boss;
+
+
+	Boss.EnemyID = m_Health_Bar.EnemyID;
+	Boss.xPos = m_Health_Bar.xPos;
+	Boss.yPos = m_Health_Bar.yPos;
 
 	
+
+	auto& animController = ECS::GetComponent<AnimationController>(m_Health_Bar.EnemyID);
+
+	auto hero = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+
+	
+
+	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionX(m_Health_Bar.xPos);
+	ECS::GetComponent<Transform>(m_Health_Bar.EnemyID).SetPositionY(m_Health_Bar.yPos);
+
+	//m_Boss_spawn[i].xPos += (m_Boss_spawn[i].xDir * 0.25);
+
+	//ECS::GetComponent<Transform>(m_Boss_spawn[i].EnemyID).SetPositionX(m_Boss_spawn[i].xPos);
+	//ECS::GetComponent<Transform>(m_Bettle_spawn[i].EnemyID).SetPositionY(m_Bettle_spawn[i].yPos);
+
+	if (!player_in_room()) {
+		ECS::DestroyEntity(m_Health_Bar.EnemyID);
+		HealthBarNum = 0;
+	}
+
+
+
 }
+
 
 
 void Game::ShadowEffect()

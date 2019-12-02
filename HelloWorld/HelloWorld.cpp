@@ -467,10 +467,10 @@ void HelloWorld::InitScene(float windowWidth, float windowHeight)
 		animController.AddAnimation(Health["Health10"]);
 
 		//Set first anitmation
-		animController.SetActiveAnim(10);
+		//animController.SetActiveAnim(10);
 
 		//gets first animation
-		auto& anim = animController.GetAnimation(10);
+		//auto& anim = animController.GetAnimation(10);
 
 		//ECS::GetComponent<Sprite>(entityBo).LoadSprite(Boss, 108/2, 151/2,true, &animController);
 		ECS::GetComponent<Sprite>(entityHealth).SetUVs(vec2(1.f, 152.f), vec2(113.f, 1.f));
