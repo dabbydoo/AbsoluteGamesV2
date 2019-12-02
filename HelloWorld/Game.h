@@ -7,7 +7,7 @@
 #include "bullet.h"
 #include"Enemy_Class.h"
 
-bool BossHits = false;
+
 //Our main class for running our game
 class Game
 {
@@ -105,6 +105,8 @@ public:
 
 	void ShadowEffect();
 
+	void collisionEffect();
+
 	bool player_in_room();
 
 	void DestroyEntities();
@@ -158,6 +160,10 @@ private:
 	//Room coord
 	int m_xMap = 3;
 	int m_yMap = 3;
+
+	//Collision
+	bool BossHits = false;
+	bool lighting = true;
 
 };
 

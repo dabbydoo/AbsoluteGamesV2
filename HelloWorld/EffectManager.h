@@ -74,7 +74,7 @@ public:
 	//Bind the basic effect stuffs
 	static void BindBasicEffect();
 	static void UnbindBasicEffect();
-	static int m_vignette;
+	
 
 	//Getters
 	//Buffer init
@@ -99,7 +99,7 @@ private:
 	//Types of effects
 	static int m_sepia;
 	static int m_greyscale;
-	
+	static int m_vignette;
 	static int m_grain;
 	static int m_pixelate;
 	static int m_selectiveColor;

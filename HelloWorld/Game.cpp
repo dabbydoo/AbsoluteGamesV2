@@ -1339,6 +1339,7 @@ void Game::CheckCollision()
 	{
 		std::cout << "\n IsHit \n" << std::endl;
 		BossHits = true;
+
 	}
 	else
 	{
@@ -1356,6 +1357,35 @@ void Game::ShadowEffect()
 	//float innerradius = temp->GetInnerRadius();
 	//float outerradius = temp->GetOuterRadius();
 	//float opacity = temp->GetOpacity();
+}
+
+void Game::collisionEffect()
+{
+	//EffectManager::CreateEffect(Vignette, BackEnd::GetWindowWidth(), BackEnd::GetWindowHeight());
+
+	if (lighting == true) {
+		VignetteEffect* temp = (VignetteEffect*)EffectManager::GetVignetteHandle();
+		float innerradius = temp->GetInnerRadius();
+		float outerradius = temp->GetOuterRadius();
+		float opacity = temp->GetOpacity();
+
+
+		auto position = ECS::GetComponent<Transform>(EntityIdentifier::MainPlayer()).GetPosition();
+
+		if (BossHits == true) {
+			innerradius = innerradius - 0.5;
+			temp->SetInnerRadius(innerradius);
+			if (innerradius <= -2.3) {
+				for (int i = 0; i <= 100; i++) {
+					innerradius--;
+					opacity++;
+					outerradius = 0.01;
+
+				}
+				std::cout << "\nGame Over \n";
+			}
+		}
+	}
 }
 
 bool Game::player_in_room()
